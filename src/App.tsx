@@ -14,10 +14,13 @@ export interface SavedDataItem {
 function App() {
   const [allSavedData, setAllSavedData] = useState<SavedDataItem[] | undefined>(undefined);
 
-  useEffect(() => {
+  const loadSavedData = () => {
     const savedData = getSavedDataFromLocalStorage();
-    setAllSavedData(savedData)
+    setAllSavedData(savedData);
+  };
 
+  useEffect(() => {
+    loadSavedData();
   }, []);
 
   return (
@@ -32,7 +35,9 @@ function App() {
         </p>
       </header>
 
-      <FormRoot />
+      <FormRoot
+        onDataSaved={loadSavedData}
+      />
 
       <ShowData
         allSavedData={allSavedData}

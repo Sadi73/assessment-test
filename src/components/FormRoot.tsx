@@ -5,6 +5,10 @@ import SecondStep from "./steps/SecondStep";
 import ThirdStep from "./steps/ThirdStep";
 import Progressbar from "./Progressbar";
 
+interface FormRootProps {
+    onDataSaved: () => void;
+}
+
 export type FormDataType = {
     name: string;
     email: string;
@@ -21,7 +25,7 @@ export const initialValues: FormDataType = {
     expertise: [],
 };
 
-const FormRoot = () => {
+const FormRoot: React.FC<FormRootProps> = ({ onDataSaved }) => {
     const [formData, setFormData] = useState<FormDataType>(initialValues);
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -58,6 +62,7 @@ const FormRoot = () => {
                     formData={formData}
                     setFormData={setFormData}
                     setCurrentStep={setCurrentStep}
+                    onDataSaved={onDataSaved}
                 />
             )}
         </div>

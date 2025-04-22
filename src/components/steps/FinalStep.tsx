@@ -2,7 +2,11 @@ import { getSavedDataFromLocalStorage, setDataIntoLocalStorage } from "../../uti
 import { initialValues } from "../FormRoot";
 import { StepProps } from "./FirstStep";
 
-const FinalStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
+interface FinalStepProps extends StepProps {
+    onDataSaved: () => void;
+}
+
+const FinalStep: React.FC<FinalStepProps> = ({ formData, setFormData, setCurrentStep, onDataSaved }) => {
 
     const handleFinalSubmit = () => {
         const savedData = getSavedDataFromLocalStorage();
@@ -10,6 +14,7 @@ const FinalStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
         setDataIntoLocalStorage(newData);
         setFormData(initialValues);
         setCurrentStep(1);
+        onDataSaved();
     };
 
     return (
