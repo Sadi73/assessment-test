@@ -13,7 +13,7 @@ export type FormDataType = {
     expertise: string[];
 };
 
-const initialValues: FormDataType = {
+export const initialValues: FormDataType = {
     name: '',
     email: '',
     address: '',

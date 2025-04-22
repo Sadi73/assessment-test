@@ -1,6 +1,16 @@
+import { getDataFromLocalStorage, setDataIntoLocalStorage } from "../../utils/utils";
+import { initialValues } from "../FormRoot";
 import { StepProps } from "./FirstStep";
 
-const FinalStep: React.FC<StepProps> = ({ formData, setCurrentStep }) => {
+const FinalStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
+
+    const handleFinalSubmit = () => {
+        const savedData = getDataFromLocalStorage();
+        const newData = [...savedData, formData];
+        setDataIntoLocalStorage(newData);
+        setFormData(initialValues);
+        setCurrentStep(1);
+    };
 
     return (
         <div className="flex flex-col grow h-full justify-between">
@@ -38,7 +48,10 @@ const FinalStep: React.FC<StepProps> = ({ formData, setCurrentStep }) => {
                     className="border px-5 py-1 rounded"
                     onClick={() => setCurrentStep(3)}
                 >Back</button>
-                <button className="border px-5 py-1 rounded">Submit</button>
+                <button
+                    className="border px-5 py-1 rounded"
+                    onClick={handleFinalSubmit}
+                >Submit</button>
             </div>
         </div>
     );
