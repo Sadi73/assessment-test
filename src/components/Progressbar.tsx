@@ -7,7 +7,7 @@ const steps = ["First", "Second", "Third", "Final"];
 const Progressbar: React.FC<ProgressbarProps> = ({ currentStep }) => {
 
   return (
-    <div className="p-6">
+    <div className="">
       <div className="flex justify-between items-center mb-6">
         {steps.map((step, index) => {
           const isActive = index + 1 <= currentStep;

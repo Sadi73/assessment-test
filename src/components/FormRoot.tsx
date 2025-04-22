@@ -26,7 +26,7 @@ const FormRoot = () => {
     const [currentStep, setCurrentStep] = useState(1);
 
     return (
-        <div className="min-h-[500px] max-w-2xl mx-auto shadow-xl rounded-md">
+        <div className="min-h-[500px] max-w-2xl mx-auto shadow-xl rounded-md p-6 flex flex-col">
 
             <Progressbar
                 currentStep={currentStep}

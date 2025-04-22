@@ -10,67 +10,63 @@ export type StepProps = {
 const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
 
     return (
-        <div className="flex flex-col justify-center items-center space-y-3">
-            <Formik
-                initialValues={{ name: formData?.name, email: formData?.email }}
-                onSubmit={(values) => {
-                    setFormData({ ...formData, ...values });
-                    setCurrentStep(2);
-                }}
-            >
-                {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                }) => (
-                    <form onSubmit={handleSubmit} className="space-y-3">
-                        <div className="grid grid-cols-3 gap-5">
-                            <label>Enter Your Name</label>
+        <Formik
+            initialValues={{ name: formData?.name, email: formData?.email }}
+            onSubmit={(values) => {
+                setFormData({ ...formData, ...values });
+                setCurrentStep(2);
+            }}
+        >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+            }) => (
+                <form onSubmit={handleSubmit} className="flex flex-col grow">
+                    <div className="space-y-3">
+                        <div>
+                            <label>Full Name</label>
                             <input
-                                type="name"
-                                className="border col-span-2"
+                                type="text"
+                                className="border w-full"
                                 name="name"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.name}
                             />
-                            {errors.name && touched.name && errors.name}
+                            {errors.name && touched.name && (
+                                <div className="text-red-500 text-sm">{errors.name}</div>
+                            )}
                         </div>
 
-                        <div className="grid grid-cols-3 gap-5">
-                            <label>Enter Your Email</label>
+                        <div>
+                            <label>Email Address</label>
                             <input
                                 type="email"
-                                className="border col-span-2"
+                                className="border w-full"
                                 name="email"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.email}
                             />
-                            {errors.email && touched.email && errors.email}
+                            {errors.email && touched.email && (
+                                <div className="text-red-500 text-sm">{errors.email}</div>
+                            )}
                         </div>
-                        <div className="grid grid-cols-3 gap-5">
-                            <div></div>
-                            <div className="col-span-2 flex justify-end space-x-3">
-                                {/* <button
-                                    type="button"
-                                    className="border px-5"
-                                    onClick={() => setCurrentStep('first')}
-                                >
-                                    Back
-                                </button> */}
-                                <button type="submit" className="border px-5">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                )}
-            </Formik>
-        </div>
+                    </div>
+
+                    {/* Button section */}
+                    <div className="mt-auto flex justify-end">
+                        <button type="submit" className="border px-5 py-1 rounded">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            )}
+        </Formik>
     );
 };
 
