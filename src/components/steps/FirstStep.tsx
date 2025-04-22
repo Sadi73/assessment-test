@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import { FormDataType } from "../FormRoot";
+import * as Yup from "yup";
 
 export type StepProps = {
     formData: FormDataType;
@@ -12,6 +13,14 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
     return (
         <Formik
             initialValues={{ name: formData?.name, email: formData?.email }}
+            validationSchema={Yup.object().shape({
+                name: Yup.string()
+                    .required("Full Name is required")
+                    .min(3, "Name must be at least 3 characters"),
+                email: Yup.string()
+                    .required("Email is required")
+                    .email("Invalid email address"),
+            })}
             onSubmit={(values) => {
                 setFormData({ ...formData, ...values });
                 setCurrentStep(2);
@@ -38,7 +47,7 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                                 value={values.name}
                             />
                             {errors.name && touched.name && (
-                                <div className="text-red-500 text-sm">{errors.name}</div>
+                                <p className="text-red-500 text-sm">{errors.name}</p>
                             )}
                         </div>
 
@@ -53,7 +62,7 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                                 value={values.email}
                             />
                             {errors.email && touched.email && (
-                                <div className="text-red-500 text-sm">{errors.email}</div>
+                                <p className="text-red-500 text-sm">{errors.email}</p>
                             )}
                         </div>
                     </div>

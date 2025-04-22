@@ -1,11 +1,20 @@
 import { Formik } from "formik";
 import { StepProps } from "./FirstStep";
+import * as Yup from "yup";
 
 const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
 
     return (
         <Formik
             initialValues={{ address: formData?.address, phoneNumber: formData?.phoneNumber }}
+            validationSchema={Yup.object().shape({
+                address: Yup.string()
+                    .required("Address is required")
+                    .min(5, "Address must be at least 5 characters"),
+                phoneNumber: Yup.string()
+                    .required("Phone Number is required")
+                    .matches(/^[0-9]{10,15}$/, "Phone Number must be 10 to 15 digits"),
+            })}
             onSubmit={(values) => {
                 setFormData({ ...formData, ...values });
                 setCurrentStep(3);
@@ -31,7 +40,7 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                                 onBlur={handleBlur}
                                 value={values.address}
                             />
-                            {errors.address && touched.address && errors.address}
+                            {errors.address && touched.address && <p className="text-red-500 text-sm">{errors.address}</p>}
                         </div>
 
                         <div className="">
@@ -44,7 +53,7 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                                 onBlur={handleBlur}
                                 value={values.phoneNumber}
                             />
-                            {errors.phoneNumber && touched.phoneNumber && errors.phoneNumber}
+                            {errors.phoneNumber && touched.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber}</p>}
                         </div>
                     </div>
 
