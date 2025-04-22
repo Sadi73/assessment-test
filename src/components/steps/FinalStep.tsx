@@ -13,6 +13,7 @@ const FinalStep: React.FC<FinalStepProps> = ({ formData, setFormData, setCurrent
         const newData = [...savedData, formData];
         setDataIntoLocalStorage(newData);
         setFormData(initialValues);
+        localStorage.removeItem('formData');
         setCurrentStep(1);
         onDataSaved();
     };

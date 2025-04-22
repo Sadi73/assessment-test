@@ -21,6 +21,10 @@ function App() {
 
   useEffect(() => {
     loadSavedData();
+    
+    return () => {
+      localStorage.removeItem('formData');
+    };
   }, []);
 
   return (

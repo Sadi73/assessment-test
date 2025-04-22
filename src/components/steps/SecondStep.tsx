@@ -16,7 +16,6 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                     .matches(/^[0-9]{10,15}$/, "Phone Number must be 10 to 15 digits"),
             })}
             onSubmit={(values) => {
-                setFormData({ ...formData, ...values });
                 setCurrentStep(3);
             }}
         >
@@ -36,7 +35,10 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                                 type="text"
                                 className="border w-full"
                                 name="address"
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    setFormData({ ...formData, [e.target.name]: e.target.value });
+                                }}
                                 onBlur={handleBlur}
                                 value={values.address}
                             />
@@ -49,7 +51,10 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                                 type="number"
                                 className="border w-full"
                                 name="phoneNumber"
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    setFormData({ ...formData, [e.target.name]: e.target.value });
+                                }}
                                 onBlur={handleBlur}
                                 value={values.phoneNumber}
                             />

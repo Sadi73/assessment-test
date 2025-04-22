@@ -22,7 +22,6 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                     .email("Invalid email address"),
             })}
             onSubmit={(values) => {
-                setFormData({ ...formData, ...values });
                 setCurrentStep(2);
             }}
         >
@@ -42,7 +41,10 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                                 type="text"
                                 className="border w-full"
                                 name="name"
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    setFormData({ ...formData, [e.target.name]: e.target.value });
+                                }}
                                 onBlur={handleBlur}
                                 value={values.name}
                             />
@@ -57,7 +59,10 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                                 type="email"
                                 className="border w-full"
                                 name="email"
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    setFormData({ ...formData, [e.target.name]: e.target.value });
+                                }}
                                 onBlur={handleBlur}
                                 value={values.email}
                             />

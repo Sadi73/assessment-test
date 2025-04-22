@@ -46,7 +46,10 @@ const ThirdStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                                 style={{ width: '100%' }}
                                 placeholder="Please select"
                                 value={values.expertise}
-                                onChange={e => setFieldValue('expertise', e)}
+                                onChange={e => {
+                                    setFieldValue('expertise', e);
+                                    setFormData({ ...formData, 'expertise': e });
+                                }}
                                 options={techOptions}
                             />
                             {errors.expertise && touched.expertise && (

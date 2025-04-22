@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FinalStep from "./steps/FinalStep";
 import FirstStep from "./steps/FirstStep";
 import SecondStep from "./steps/SecondStep";
 import ThirdStep from "./steps/ThirdStep";
 import Progressbar from "./Progressbar";
+import { getFormDataFromLocalStorage, saveFormDataToLocalStorage } from "../utils/utils";
 
 interface FormRootProps {
     onDataSaved: () => void;
@@ -26,8 +27,14 @@ export const initialValues: FormDataType = {
 };
 
 const FormRoot: React.FC<FormRootProps> = ({ onDataSaved }) => {
-    const [formData, setFormData] = useState<FormDataType>(initialValues);
+    const [formData, setFormData] = useState<FormDataType>(() => {
+        return getFormDataFromLocalStorage();
+    });
     const [currentStep, setCurrentStep] = useState(1);
+
+    useEffect(() => {
+        saveFormDataToLocalStorage(formData);
+      }, [formData]);
 
     return (
         <div className="min-h-[450px] max-w-2xl mx-auto shadow-xl rounded-md p-6 flex flex-col">
