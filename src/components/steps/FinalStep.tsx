@@ -23,7 +23,13 @@ const FinalStep: React.FC<StepProps> = ({ formData, setCurrentStep }) => {
                 </div>
                 <div className="grid grid-cols-3 border w-full gap-5">
                     <label className="text-end">Expertise: </label>
-                    <p className="col-span-2">{formData?.expertise}</p>
+                    <div className="col-span-2 flex flex-wrap gap-2">
+                        {formData?.expertise?.map((item: string, idx: number) => (
+                            <span key={idx} className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-sm">
+                                {item}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -31,7 +37,7 @@ const FinalStep: React.FC<StepProps> = ({ formData, setCurrentStep }) => {
                 <button
                     className="border px-5 py-1 rounded"
                     onClick={() => setCurrentStep(3)}
-                >Update</button>
+                >Back</button>
                 <button className="border px-5 py-1 rounded">Submit</button>
             </div>
         </div>

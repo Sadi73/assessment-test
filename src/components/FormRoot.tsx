@@ -10,7 +10,7 @@ export type FormDataType = {
     email: string;
     address: string;
     phoneNumber: string;
-    expertise: string;
+    expertise: string[];
 };
 
 const initialValues: FormDataType = {
@@ -18,7 +18,7 @@ const initialValues: FormDataType = {
     email: '',
     address: '',
     phoneNumber: '',
-    expertise: '',
+    expertise: [],
 };
 
 const FormRoot = () => {
