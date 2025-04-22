@@ -4,19 +4,18 @@ import { FormDataType } from "../FormRoot";
 export type StepProps = {
     formData: FormDataType;
     setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
-    setCurrentPage: React.Dispatch<React.SetStateAction<'first' | 'second' | 'third' | 'final'>>;
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentPage }) => {
+const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
 
     return (
         <div className="flex flex-col justify-center items-center space-y-3">
-            <p>First Step</p>
             <Formik
                 initialValues={{ name: formData?.name, email: formData?.email }}
                 onSubmit={(values) => {
                     setFormData({ ...formData, ...values });
-                    setCurrentPage('second');
+                    setCurrentStep(2);
                 }}
             >
                 {({
@@ -59,7 +58,7 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentPage 
                                 {/* <button
                                     type="button"
                                     className="border px-5"
-                                    onClick={() => setCurrentPage('first')}
+                                    onClick={() => setCurrentStep('first')}
                                 >
                                     Back
                                 </button> */}

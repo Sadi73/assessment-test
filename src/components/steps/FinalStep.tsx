@@ -1,6 +1,6 @@
 import { StepProps } from "./FirstStep";
 
-const FinalStep: React.FC<StepProps> = ({ formData, setCurrentPage }) => {
+const FinalStep: React.FC<StepProps> = ({ formData, setCurrentStep }) => {
 
     return (
         <div className="flex flex-col justify-center items-center space-y-3">
@@ -28,7 +28,7 @@ const FinalStep: React.FC<StepProps> = ({ formData, setCurrentPage }) => {
             <div className="w-1/2 flex justify-end gap-5">
                 <button
                     className="border px-5"
-                    onClick={() => setCurrentPage('third')}
+                    onClick={() => setCurrentStep(3)}
                 >Update</button>
                 <button className="border px-5">Submit</button>
             </div>

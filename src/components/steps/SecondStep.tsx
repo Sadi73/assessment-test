@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { StepProps } from "./FirstStep";
 
-const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentPage }) => {
+const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
 
     return (
         <div className="flex flex-col justify-center items-center space-y-3">
@@ -10,7 +10,7 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentPage
                 initialValues={{ address: formData?.address, phoneNumber: formData?.phoneNumber }}
                 onSubmit={(values) => {
                     setFormData({ ...formData, ...values });
-                    setCurrentPage('third');
+                    setCurrentStep(3);
                 }}
             >
                 {({
@@ -53,7 +53,7 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentPage
                                 <button
                                     type="button"
                                     className="border px-5"
-                                    onClick={() => setCurrentPage('first')}
+                                    onClick={() => setCurrentStep(1)}
                                 >
                                     Back
                                 </button>
