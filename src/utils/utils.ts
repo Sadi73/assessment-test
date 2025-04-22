@@ -1,6 +1,6 @@
 import { FormDataType } from "../components/FormRoot";
 
-export const getDataFromLocalStorage = () => {
+export const getSavedDataFromLocalStorage = () => {
     const savedData = localStorage.getItem('savedData');
     return savedData ? JSON.parse(savedData) : [];
 };
