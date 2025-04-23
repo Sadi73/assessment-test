@@ -28,8 +28,8 @@ function App() {
   }, []);
 
   return (
-    <div className=''>
-      <header className="text-center my-12">
+    <div className='py-10'>
+      <header className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-transparent bg-clip-text">
           Assessment Test
         </h1>

@@ -5,6 +5,7 @@ import SecondStep from "./steps/SecondStep";
 import ThirdStep from "./steps/ThirdStep";
 import Progressbar from "./Progressbar";
 import { getFormDataFromLocalStorage, saveFormDataToLocalStorage } from "../utils/utils";
+import { Button } from "antd";
 
 interface FormRootProps {
     onDataSaved: () => void;
@@ -28,13 +29,18 @@ export const initialValues: FormDataType = {
 
 const FormRoot: React.FC<FormRootProps> = ({ onDataSaved }) => {
     const [formData, setFormData] = useState<FormDataType>(() => {
-        return getFormDataFromLocalStorage();
+        const saved = getFormDataFromLocalStorage();
+        return saved?.data || initialValues;
     });
-    const [currentStep, setCurrentStep] = useState(1);
+
+    const [currentStep, setCurrentStep] = useState<number>(() => {
+        const saved = getFormDataFromLocalStorage();
+        return saved?.step || 1;
+    });
 
     useEffect(() => {
-        saveFormDataToLocalStorage(formData);
-      }, [formData]);
+        saveFormDataToLocalStorage(formData, currentStep);
+    }, [formData]);
 
     return (
         <div className="min-h-[450px] max-w-2xl mx-auto shadow-xl rounded-md p-6 flex flex-col">
@@ -72,6 +78,14 @@ const FormRoot: React.FC<FormRootProps> = ({ onDataSaved }) => {
                     onDataSaved={onDataSaved}
                 />
             )}
+
+            <div>
+                <Button onClick={() => {
+                    localStorage.removeItem('formData');
+                    setFormData(initialValues);
+                    setCurrentStep(1);
+                }}>Reset</Button>
+            </div>
         </div>
     );
 };

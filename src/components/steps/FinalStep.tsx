@@ -21,23 +21,23 @@ const FinalStep: React.FC<FinalStepProps> = ({ formData, setFormData, setCurrent
     return (
         <div className="flex flex-col grow h-full justify-between">
             <div className="space-y-5">
-                <div className="grid grid-cols-3 border w-full gap-5">
+                <div className="grid grid-cols-3 border-b pb-3 w-full gap-5">
                     <label className="text-end">Name: </label>
                     <p className="col-span-2">{formData?.name}</p>
                 </div>
-                <div className="grid grid-cols-3 border w-full gap-5">
+                <div className="grid grid-cols-3 border-b pb-3 w-full gap-5">
                     <label className="text-end">Email: </label>
                     <p className="col-span-2">{formData?.email}</p>
                 </div>
-                <div className="grid grid-cols-3 border w-full gap-5">
+                <div className="grid grid-cols-3 border-b pb-3 w-full gap-5">
                     <label className="text-end">Address: </label>
                     <p className="col-span-2">{formData?.address}</p>
                 </div>
-                <div className="grid grid-cols-3 border w-full gap-5">
+                <div className="grid grid-cols-3 border-b pb-3 w-full gap-5">
                     <label className="text-end">Phone Number: </label>
                     <p className="col-span-2">{formData?.phoneNumber}</p>
                 </div>
-                <div className="grid grid-cols-3 border w-full gap-5">
+                <div className="grid grid-cols-3 border-b pb-3 w-full gap-5">
                     <label className="text-end">Expertise: </label>
                     <div className="col-span-2 flex flex-wrap gap-2">
                         {formData?.expertise?.map((item: string, idx: number) => (

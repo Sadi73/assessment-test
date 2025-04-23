@@ -1,6 +1,9 @@
 import { Formik } from "formik";
 import { StepProps } from "./FirstStep";
 import * as Yup from "yup";
+import { Input } from "antd";
+
+const { TextArea } = Input;
 
 const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep }) => {
 
@@ -31,10 +34,10 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                     <div className="space-y-3">
                         <div className="">
                             <label>Enter Your Address</label>
-                            <input
-                                type="text"
+                            <TextArea rows={4}
                                 className="border w-full"
                                 name="address"
+                                placeholder="Enter Your Address"
                                 onChange={(e) => {
                                     handleChange(e);
                                     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,10 +50,11 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
 
                         <div className="">
                             <label>Enter Phone Number</label>
-                            <input
+                            <Input
                                 type="number"
                                 className="border w-full"
                                 name="phoneNumber"
+                                 placeholder="Enter Phone Number"
                                 onChange={(e) => {
                                     handleChange(e);
                                     setFormData({ ...formData, [e.target.name]: e.target.value });

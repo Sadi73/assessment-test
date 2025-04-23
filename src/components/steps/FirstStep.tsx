@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { FormDataType } from "../FormRoot";
 import * as Yup from "yup";
+import { Input } from "antd";
 
 export type StepProps = {
     formData: FormDataType;
@@ -37,10 +38,11 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                     <div className="space-y-3">
                         <div>
                             <label>Full Name</label>
-                            <input
+                            <Input
                                 type="text"
                                 className="border w-full"
                                 name="name"
+                                placeholder="Enter Your Full Name"
                                 onChange={(e) => {
                                     handleChange(e);
                                     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -55,10 +57,11 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
 
                         <div>
                             <label>Email Address</label>
-                            <input
+                            <Input
                                 type="email"
                                 className="border w-full"
                                 name="email"
+                                 placeholder="Enter Valid Email"
                                 onChange={(e) => {
                                     handleChange(e);
                                     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,7 +75,6 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                         </div>
                     </div>
 
-                    {/* Button section */}
                     <div className="mt-auto flex justify-end">
                         <button type="submit" className="border px-5 py-1 rounded">
                             Next

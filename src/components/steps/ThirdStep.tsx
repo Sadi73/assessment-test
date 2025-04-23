@@ -39,12 +39,12 @@ const ThirdStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                 <form onSubmit={handleSubmit} className="flex flex-col grow justify-between h-full">
                     <div className="space-y-3">
                         <div>
-                            <label>Select Your Expertise</label>
+                            <label>Expertise</label>
                             <Select
                                 mode="multiple"
                                 allowClear
                                 style={{ width: '100%' }}
-                                placeholder="Please select"
+                                placeholder="Select Expertise"
                                 value={values.expertise}
                                 onChange={e => {
                                     setFieldValue('expertise', e);
