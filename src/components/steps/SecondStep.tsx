@@ -18,7 +18,7 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep
                     .required("Phone Number is required")
                     .matches(/^[0-9]{10,15}$/, "Phone Number must be 10 to 15 digits"),
             })}
-            onSubmit={(values) => {
+            onSubmit={() => {
                 setCurrentStep(3);
             }}
         >

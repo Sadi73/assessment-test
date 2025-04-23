@@ -14,6 +14,7 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
     return (
         <Formik
             initialValues={{ name: formData?.name, email: formData?.email }}
+            enableReinitialize={true}
             validationSchema={Yup.object().shape({
                 name: Yup.string()
                     .required("Full Name is required")
@@ -22,7 +23,7 @@ const FirstStep: React.FC<StepProps> = ({ formData, setFormData, setCurrentStep 
                     .required("Email is required")
                     .email("Invalid email address"),
             })}
-            onSubmit={(values) => {
+            onSubmit={() => {
                 setCurrentStep(2);
             }}
         >
